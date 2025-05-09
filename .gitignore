@@ -51,14 +51,11 @@ model/svm_model/*.pkl
 *.db
 
 # Data files
-data/processed/
-data/processed_lr/
-data/raw/
 data/test/
-data/test_view/
 data/train/
-New_data/asl_alphabet_test/
-New_data/asl_alphabet_train/
+
+# New_data specific
+New_data/asl_alphabet_train/**/*.jpg
 
 # Jupyter Notebook
 .ipynb_checkpoints
