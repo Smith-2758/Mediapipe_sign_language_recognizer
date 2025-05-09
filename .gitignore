@@ -51,8 +51,8 @@ model/svm_model/*.pkl
 *.db
 
 # Data files
-data/test/
-data/train/
+data/test/**/*.jpg
+data/train/**/*.jpg
 
 # New_data specific
 New_data/asl_alphabet_train/**/*.jpg
