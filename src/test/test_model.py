@@ -1,0 +1,66 @@
+import pandas as pd
+import numpy as np
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+import joblib  # 用于保存模型
+
+# === 1. 读取数据（使用相对于手腕的相对坐标特征，包含 handedness） ===
+train_path = 'data/processed/hand_landmarks_train_relative_left_only.csv'
+test_path = 'data/processed/hand_landmarks_test_relative_left_only.csv'
+
+train_df = pd.read_csv(train_path)
+test_df = pd.read_csv(test_path)
+
+# === 2. 提取特征和标签 ===
+X_train = train_df.drop(['label', 'handedness'], axis=1)
+y_train = train_df['label']
+
+X_test = test_df.drop(['label', 'handedness'], axis=1)
+y_test = test_df['label']
+
+# === 3. 标签编码 ===
+label_encoder = LabelEncoder()
+y_train_encoded = label_encoder.fit_transform(y_train)
+y_test_encoded = label_encoder.transform(y_test)
+
+# === 4. 特征标准化 ===
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# === 5. 定义并训练 SVM 模型 ===
+model = SVC(kernel='rbf', C=10, gamma='scale')  # 可以调参
+model.fit(X_train_scaled, y_train_encoded)
+
+# === 6. 模型预测 ===
+y_pred_encoded = model.predict(X_test_scaled)
+y_pred = label_encoder.inverse_transform(y_pred_encoded)
+
+# === 7. 性能评估 ===
+print("✅ 准确率:", accuracy_score(y_test, y_pred))
+print("\n📊 分类报告:\n", classification_report(y_test, y_pred))
+
+# === 8. 混淆矩阵可视化 ===
+plt.figure(figsize=(12, 10))
+cm = confusion_matrix(y_test, y_pred, labels=sorted(y_test.unique()))
+sns.heatmap(cm, annot=True, fmt="d", xticklabels=sorted(y_test.unique()), yticklabels=sorted(y_test.unique()), cmap='Blues')
+plt.xlabel("预测标签")
+plt.ylabel("真实标签")
+plt.title("混淆矩阵 (使用相对于手腕的相对坐标特征，仅左手或镜像右手)")
+plt.show()
+
+# === 9. 保存模型、Scaler 和 LabelEncoder ===
+model_path = 'hand_gesture_recognition_model.pkl'
+joblib.dump(model, model_path)
+print(f"✅ SVM 模型已保存到: {model_path}")
+
+scaler_path = 'hand_gesture_recognition_scaler.pkl'
+joblib.dump(scaler, scaler_path)
+print(f"✅ StandardScaler 已保存到: {scaler_path}")
+
+label_encoder_path = 'hand_gesture_recognition_label_encoder.pkl'
+joblib.dump(label_encoder, label_encoder_path)
+print(f"✅ LabelEncoder 已保存到: {label_encoder_path}")
