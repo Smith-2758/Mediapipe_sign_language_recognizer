@@ -43,7 +43,7 @@ temp/
 *.mp3
 *.wav
 model/svm_model/*.pkl
-src/test
+src/test/
 
 # Logs and databases
 *.log
