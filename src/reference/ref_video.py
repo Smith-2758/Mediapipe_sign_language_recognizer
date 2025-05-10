@@ -1,3 +1,9 @@
+"""
+# Google参考代码：视频静态图像手部检测
+# 该代码使用MediaPipe库检测视频中的静态手部，并在图像上绘制手部关键点和连接线。
+
+"""
+
 import cv2
 import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils

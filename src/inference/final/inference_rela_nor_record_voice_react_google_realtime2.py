@@ -75,7 +75,7 @@ output_audio_filename_base = f'output/spoken_gesture_sequence_{timestamp}'
 # 初始化状态变量
 last_record_time = time.time()  # 上次记录时间
 recorded_labels = []            # 已识别的手势序列
-record_interval = 4            # 手势识别间隔（秒）
+record_interval = 3            # 手势识别间隔（秒）
 record_indicator_duration = 0.5  # 绿色提示框显示时间
 indicator_active = False        # 提示框状态
 indicator_start_time = 0       # 提示框开始时间

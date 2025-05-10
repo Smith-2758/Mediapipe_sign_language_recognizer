@@ -39,8 +39,6 @@ Thumbs.db
 # Project specific
 temp/
 *.mp4
-*.avi
-*.mp3
 *.wav
 model/svm_model/*.pkl
 src/test/
