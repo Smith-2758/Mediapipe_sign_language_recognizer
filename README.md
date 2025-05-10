@@ -89,10 +89,13 @@ python src/inference/inference_rela_nor_record_voice_react_google_realtime.py
 - 使用手势"2"删除上一个输入
 - 按'q'键退出程序
 
+3. 数据说明:
+  如果准备向项目内添加图像以供测试训练，请注意，将图像命名为以类别字母开头的名称，例如“A1.jpg”，并将其放入对应文件夹。
+
 ## 模型训练
 
 模型训练使用了以下数据集：
-- yolo训练所用以及初始数据集：数据集来源于 RoboFlow 提供的公开数据集平台 [2]。图像总数约为1500张，每类样本数量基本均衡；该数据集的特点为手语字母图像为不同环境、肤色、光照以及角度等条件下拍摄的。
+- yolo训练所用以及初始数据集：数据集来源于 RoboFlow 提供的公开数据集平台。图像总数约为1500张，每类样本数量基本均衡；该数据集的特点为手语字母图像为不同环境、肤色、光照以及角度等条件下拍摄的。
 (https://public.roboflow.com/object-detection/american-sign-language-letters/1/download/yolov5pytorch)
 - Mediapipe技术路径最终使用的手语字母数据集：数据集包含87,000张图像，每张图像的尺寸为200×200像素。该数据集共分为29个类别，其中26个类别对应英文字母A–Z（如图3，不包含NOTHING），另外3个类别分别为SPACE（空格）、DELETE（删除）和NOTHING（无动作）,每个类别存在3000张图片。(https://www.kaggle.com/datasets/grassknoted/asl-alphabet)
 - 特征提取：基于MediaPipe的手部关键点检测

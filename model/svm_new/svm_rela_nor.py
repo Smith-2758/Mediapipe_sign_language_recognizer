@@ -61,18 +61,18 @@ sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
 plt.title('手语识别混淆矩阵 (使用部分归一化数据)')
 plt.ylabel('真实标签')
 plt.xlabel('预测标签')
-plt.savefig('results/new_confusion_matrix_partial_normalized.png', bbox_inches='tight', dpi=300)
+plt.savefig('results/new_confusion_matrix_partial_normalized2.png', bbox_inches='tight', dpi=300)
 plt.show()  # 使用 plt.show() 来显示图形并保持打开状态
 
 # === 8. 保存模型、Scaler 和 LabelEncoder ===
-model_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_model_partial_normalized.pkl'
+model_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_model_partial_normalized2.pkl'
 joblib.dump(model, model_path)
 print(f"✅ SVM 模型已保存到: {model_path}")
 
-scaler_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_scaler_partial_normalized.pkl'
+scaler_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_scaler_partial_normalized2.pkl'
 joblib.dump(scaler, scaler_path)
 print(f"✅ StandardScaler 已保存到: {scaler_path}")
 
-label_encoder_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_label_encoder_partial_normalized.pkl'
+label_encoder_path = 'model/svm_model/relative_normalized/new_hand_gesture_recognition_label_encoder_partial_normalized2.pkl'
 joblib.dump(label_encoder, label_encoder_path)
 print(f"✅ LabelEncoder 已保存到: {label_encoder_path}")
